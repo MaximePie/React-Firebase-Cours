@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8"/>
+    <title>Hello React</title>
+    <!-- Library -->
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+
+    <!-- babel => compilation du JSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link rel="stylesheet" href="../6%20-%20Formulaires/style.css"/>
+</head>
+
+<body>
+<div id="root"></div>
+<script type="text/babel">
+
+    class Title extends React.Component {
+
+        constructor() {
+            super();
+            this.state = {
+                title: 0,
+            }
+        }
+
+        componentDidMount() {
+            this.setState({
+                title: this.props.text,
+            })
+        }
+
+        /**
+         * Ici vous pouvez :
+         * Interrompre les différentes intervales en cours
+         * Interrompre les requêtes en cours
+         * Fermer les streams en cours
+         */
+        componentWillUnMount() {
+
+        }
+
+        render() {
+            return (
+              <h1>{this.state.title}</h1>
+            )
+        }
+    }
+
+    // Création de composant en créant des classes
+    class App extends React.Component {
+
+        constructor() {
+            super();
+
+            this.state = {
+                password: "",
+                errorMessage: "",
+                counter: 0,
+            };
+
+            this.updatePassword = this.updatePassword.bind(this);
+            this.incrementCounter = this.incrementCounter.bind(this);
+        }
+
+        /**
+         * Cette méthode est appelée dès qu'un setState est effectué.
+         * PrevState contient l'objet state de la classe avant le setState
+         * Pour rappel, pour accéder à l'état courant, utiliser this.state.
+         * PreviousProps n'est pas utilisé dans cet exercice
+         * https://fr.reactjs.org/docs/state-and-lifecycle.html
+         */
+        componentDidUpdate(previousProps, previousState) {
+            if (this.state.counter >= 10 && this.state.errorMessage === '') {
+                this.setState({
+                    errorMessage: "Erreur",
+                })
+            }
+        }
+
+        render() {
+            return (
+                <div className="App">
+                    <h2>{this.state.counter}</h2>
+                    {this.state.errorMessage}
+                    <button onClick={this.incrementCounter}>Incrementer</button>
+                    <Title text={"Baba"}/>
+                    <Title text={"Cookie"}/>
+                </div>
+            )
+        }
+
+        /**
+         * Mettre à jour le compteur en lui augmentant de 1
+         */
+        incrementCounter() {
+            this.setState({
+                counter: this.state.counter + 1,
+            })
+
+            /* Pas bien
+            if (this.state.counter > 10) {
+                this.setState({
+                    errorMessage: "Erreur",
+                })
+            }
+            */
+        }
+
+        /**
+         * Met à jour le password dans le state
+         */
+        updatePassword(event) {
+            this.setState({
+                password: event.target.value
+            })
+        }
+    }
+
+    // Rendu dans le DOM
+    ReactDOM.render(
+        <App/>,
+        document.getElementById('root')
+    );
+</script>
+</body>
+
+</html>

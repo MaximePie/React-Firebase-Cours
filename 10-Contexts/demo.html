@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8"/>
+  <title>Hello React</title>
+  <!-- Library -->
+  <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+
+  <!-- babel => compilation du JSX -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+<div id="root"></div>
+<script type="text/babel">
+
+  function Frigo(props) {
+    let temperature = React.useContext(temperatureContext);
+
+    if (props.isFromTerrasse) {
+      temperature += 2;
+    }
+
+    return (
+      <div>
+        <h3>Ceci est le frigo dans le jardin</h3>
+        <p>Il fait actuellement {temperature} degrés.</p>
+      </div>
+    )
+  }
+
+  function Jardin() {
+    const temperature = React.useContext(temperatureContext);
+
+    return (
+      <div>
+        <h2>Ceci est le jardin.</h2>
+        <p>Il fait actuellement {temperature}</p>
+        <Frigo/>
+      </div>
+    )
+  }
+
+  function Terrasse() {
+    const temperature = React.useContext(temperatureContext);
+
+    return (
+      <div>
+        <h2>Ceci est la terrasse</h2>
+        <p>Température : {temperature + 2}</p>
+        <Frigo isFromTerrasse/>
+      </div>
+    )
+  }
+
+  const temperatureContext = React.createContext(0);
+
+  function App() {
+    const [temperature, setTemperature] = React.useState(0);
+
+    return (
+      <temperatureContext.Provider value={temperature}>
+          <button onClick={() => setTemperature(temperature + 1)}>Augmenter</button>
+          <button onClick={() => setTemperature(temperature - 1)}>Diminuer</button>
+        <div style={{display: "flex"}}>
+          Bonjour !
+          <Jardin/>
+          <Terrasse/>
+        </div>
+      </temperatureContext.Provider>
+    )
+  }
+
+  // Rendu dans le DOM
+  ReactDOM.render(
+    <App/>,
+    document.getElementById('root')
+  );
+</script>
+</body>
+
+</html>

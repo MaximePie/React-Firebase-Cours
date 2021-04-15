@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8"/>
+    <title>Hello React</title>
+    <!-- Library -->
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+
+    <!-- babel => compilation du JSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link href="../prism.css" rel="stylesheet" />
+</head>
+
+<body>
+<div id="root">
+
+</div>
+<script src="../prism.js"></script>
+<script type="text/babel">
+
+    class PrimaryButton extends React.Component {
+      render() {
+        if (this.props.dada) {
+            return (
+              <button>{this.props.text} - {this.props.dada}</button>
+            )
+        }
+        else {
+          return null;
+        }
+      }
+    }
+
+    class Home extends React.Component {
+      render() {
+        return (
+          <div>
+              <h2>Bonjour React</h2>
+              <p>Contenu</p>
+              <div class="container">
+                  <pre>
+                      <code class="language-scss">
+                          color: red;
+                      </code>
+                  </pre>
+              </div>
+              <PrimaryButton text="Bouton1" dada={15}/>
+              <PrimaryButton text="Bouton2" bolino={{haha: "text", age: 15}}/>
+          </div>
+        )
+      }
+    }
+
+  // Rendu dans le DOM
+  ReactDOM.render(
+    <Home/>,
+    document.getElementById('root')
+  );
+</script>
+</body>
+
+</html>

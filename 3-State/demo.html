@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8"/>
+    <title>Hello React</title>
+    <!-- Library -->
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+
+    <!-- babel => compilation du JSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+<div id="root"></div>
+<script type="text/babel">
+
+    class CompteurPopcorn extends React.Component {
+
+        constructor() {
+            super();
+
+            this.state = {
+                popcorns: 0,
+                dada: "Haha",
+            }
+
+            this.handleClick = this.handleClick.bind(this);
+        }
+
+        render() {
+
+            let popcorns = this.state.popcorns;
+
+            console.log(this.state);
+
+            return (
+                <div>
+                    <h3>Nombre de popcorns : {popcorns}</h3>
+                    <button onClick={this.handleClick}>Ajouter {this.state.dada}</button>
+                </div>
+            )
+        }
+
+        /**
+         * Augmente de 1 notre state de popcorns
+         */
+        handleClick() {
+            this.setState({ // Bien
+                popcorns: this.state.popcorns + 1,
+            })
+            // this.state.popcorns = "Haha"; // Pas bien
+        }
+    }
+
+    // Création de composant en créant des classes
+    class Hello extends React.Component {
+
+        render() {
+            return (
+                <div>
+                    <h1>Bonjour</h1>
+                    <CompteurPopcorn/>
+                </div>
+            )
+        }
+    }
+
+    // Rendu dans le DOM
+    ReactDOM.render(
+        <Hello message="Hello React" subtitle="Enjoy ! "/>,
+        document.getElementById('root')
+    );
+</script>
+</body>
+
+</html>

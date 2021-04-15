@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8"/>
+    <title>Hello React</title>
+    <!-- Library -->
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+
+    <!-- babel => compilation du JSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        .heading {
+            color: purple;
+        }
+    </style>
+</head>
+
+<body>
+<div id="root"></div>
+<script type="text/babel">
+
+    class Profile extends React.Component {
+        render() {
+            return (
+                <div>
+                    <p>Ceci est un faux profil, attention ! Et il génère un composant PrimaryButton !</p>
+                    <PrimaryButton text="Signaler"/>
+                </div>
+            )
+        }
+    }
+
+    class Consigne extends React.Component {
+        render() {
+            return (
+                <div>
+                    <p>Consultez le composant Profile pour découvrir comment inclure un composant dans un autre</p>
+                    <p>
+                        Dans le composant Form, inclure le composant PrimaryButton en lui passant la valeur
+                        "Valider" comme props de text.
+                    </p>
+                    <p>
+                        Créer un composant FormHeader qui affichera un h2 contenant un texte passé en props
+                    </p>
+                    <p>
+                        Dans le composant Form, générer le composant FormHeader en lui passant un titre de formulaire en
+                        props de text.
+                    </p>
+                </div>
+            )
+        }
+    }
+
+    class Form extends React.Component {
+        render() {
+            return (
+                <div>
+                    {/* Remplir ici */}
+                </div>
+            )
+        }
+    }
+
+    class PrimaryButton extends React.Component {
+        render() {
+            return (
+                <button>{this.props.text}</button>
+            )
+        }
+    }
+
+    // Création de composant en créant des classes
+    class Hello extends React.Component {
+
+        render() {
+            return (
+                <div>
+                    <TitleComponent/>
+                    <Consigne/>
+                </div>
+            );
+        }
+    }
+
+    // Rendu dans le DOM
+    ReactDOM.render(
+        <Hello/>,
+        document.getElementById('root')
+    );
+</script>
+</body>
+
+</html>

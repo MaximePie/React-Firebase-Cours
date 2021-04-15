@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8"/>
+    <title>Hello React</title>
+    <!-- Library -->
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+
+    <!-- babel => compilation du JSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        .Sandwiches {
+            border: solid;
+            padding: 8px;
+            margin: 8px 0;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .Sandwiches__sandwich {
+            border: solid 1px darkgrey;
+            padding: 8px;
+            margin: 8px 0;
+        }
+    </style>
+</head>
+
+<body>
+<div id="root"></div>
+<script type="text/babel">
+
+    class Sandwiches extends React.Component {
+
+        constructor() {
+            super();
+            this.state = {
+                sandwiches: [
+                    {
+                        name: "Club",
+                        price: 2,
+                        draftName: "",
+                    },
+                    {
+                        name: "Panini",
+                        price: 5,
+                        draftName: "",
+                    },
+                    {
+                        name: "Taco",
+                        price: 9,
+                        draftName: "",
+                    },
+                ]
+            }
+        }
+
+        render() {
+            return (
+                <div className="Sandwiches">
+                    {this.state.sandwiches.map((sandwich, index) => (
+                        <div className="Sandwiches__sandwich">
+                            <p>Name : {sandwich.name}</p>
+                            <p>Prix : {sandwich.price}</p>
+                            <p>Draft : {sandwich.draftName}</p>
+                            <div>
+                                <label>
+                                    Nouveau nom:
+                                    <input type={"text"} onChange={(event) => this.updateDraftName(event, index)}/>
+                                </label>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            )
+        }
+
+        /**
+         * Cette méthode met à jour le draftName du sandwich ciblé par l'index
+         * @param event Event - Contient l'événement qui contient la target avec la nouvelle valeur de l'input
+         * @param index Number - La position du sandwich dans le tableau des sandwiches dont on doit changer le draftName
+         */
+        updateDraftName(event, index) {
+            // Récupérer la liste des sandwichs dans le state
+
+        }
+    }
+
+    // Création de composant en créant des classes
+    class Hello extends React.Component {
+
+        constructor() {
+            super();
+
+            this.state = {
+                users: [
+                    {
+                        name: "Carlos",
+                        draftName: "",
+                    },
+                    {
+                        name: "Gunthar",
+                        draftName: "",
+                    },
+                    {
+                        name: "Kameliya",
+                        draftName: "",
+                    },
+                    {
+                        name: "LaPetite",
+                        draftName: "",
+                    },
+                ]
+            }
+        }
+
+        render() {
+            return (
+                <div>
+                    <p>
+                        <a href="https://medium.com/javascript-in-plain-english/react-updating-a-value-in-state-array-7bae7c7eaef9">
+                            Article sur comment modifier un tableau avec des states
+                        </a>
+                        <ul>
+                            <li>
+                                Afficher la liste des utilisateurs du state users à l'aide de .map()
+                            </li>
+                        </ul>
+                        <ul>
+                            <li>
+                                Pour chaque utilisateur, afficher son contenu dans un paragraphe, et un boutton
+                                Supprimer
+                            </li>
+                            <li>
+                                Le bouton supprimer devra appeler une fonction this.supprimer que vous devrez créer.
+                            </li>
+                            <li>
+                                La fonction supprimer prend en paramètre un nombre entier correspondant à la position
+                                dans le tableau de l'élément à supprimer.
+                            </li>
+                        </ul>
+
+                        <p>Voici un composant qui permet d'afficher une liste de chats et de modifier leurs noms. </p>
+                            <Sandwiches/>
+                        <p>
+                            En vous inspirant du composant précédent, reproduisez le même mécanisme sur le composant App
+                            pour les utilisateurs
+                        </p>
+                        <ul>
+                            <li>
+                                Pour chaque utilisateur, afficher un champ input de type texte, dont la valeur sera
+                                égale au draftName de l'utilisateur
+                            </li>
+                            <li>
+                                Pour chaque input texte, ajouter un écouteur d'événement onChange pour déclencher la méthode
+                                updateDraftName en lui envoyant comme paramètres : l'event, et l'index
+                            </li>
+                            <li>
+                                Remplir la méthode updateDraftName
+                            </li>
+                            <li>
+                                Pour chaque utilisateur, créer un bouton "Sauvegarder" qui va déclencher la méthode
+                                saveNewName que vous devrez remplir
+                            </li>
+                        </ul>
+                    </p>
+                </div>
+            )
+        }
+
+        /**
+         * Cette méthode modifie l'utilisateur désigné par l'index de manière à ce que :
+         * Son nom soit égal à son draftName
+         * Puis son draftName soit vidé
+         * @param index Number - La position de l'utilisateur dont on veut sauvegarder le nouveau nom
+         */
+        saveNewName(index) {
+
+        }
+
+        /**
+         * Cette méthode met à jour le draftName de l'utilisateur ciblé par l'index
+         * @param event Event - Contient l'événement qui contient la target avec la nouvelle valeur de l'input
+         * @param index Number - La position de l'utilisateur dans le tableau des users dont on doit changer le draftName
+         */
+        updateDraftName(event, index) {
+            /*
+            * Remplir la fonction ici
+            * */
+        }
+    }
+
+    // Rendu dans le DOM
+    ReactDOM.render(
+        <Hello/>,
+        document.getElementById('root')
+    );
+</script>
+</body>
+
+</html>
