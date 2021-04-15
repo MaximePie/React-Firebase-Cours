@@ -107,7 +107,7 @@ import Login from "./Login.jsx";
 
 function App() {
   return (
-    <FirebaseDatabaseProvider>
+    <FirebaseDatabaseProvider {...firebaseConfig} firebase={firebase}>
       <FirebaseAuthProvider {...firebaseConfig} firebase={firebase}>
         {/* Ce composant n'est généré que si on n'est pas authentifié. */}
         <IfFirebaseUnAuthed>

@@ -5,9 +5,7 @@ export default function Login() {
   return (
     <div>
       <button
-        onClick={() => {
-          firebase.auth().signInAnonymously();
-        }}
+        onClick={login}
       >
         Sign In Anonymously
       </button>
