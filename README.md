@@ -129,6 +129,23 @@ export default App;
 
 ```
 
+## Créer un espace personnel pour les utilisateurs connectés 
+
+Modifier les règles de base de données depuis FireStorm 
+
+```
+{
+  "rules": {
+    "users": {
+      "$uid": {
+        ".write": "$uid === auth.uid"
+      }
+    }
+  }
+}
+```
+
+![image](https://user-images.githubusercontent.com/16031936/115036089-7bf3ed80-9ecd-11eb-9ff2-663f3427ec91.png)
 
 ## Erreurs possibles 
 
@@ -159,3 +176,5 @@ Ajouter les rules
       }
     }
 ```
+
+
