@@ -178,3 +178,15 @@ Ajouter les rules
 ```
 
 
+#### firebase.app is not a function
+
+Vérifiez que vous ayiez bien enveloppé votre application avec le service désiré
+
+```js
+    <FirebaseDatabaseProvider firebase={firebase} {...firebaseConfig}>
+      <FirebaseAuthProvider firebase={firebase} {...firebaseConfig}>
+        <div className="App">
+        </div>
+      </FirebaseAuthProvider>
+    </FirebaseDatabaseProvider>
+```
