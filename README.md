@@ -9,7 +9,7 @@ Créer le projet React et l'installer : `npx create-react-app app && cd app && y
 
 [Installer Firebase ](https://react-firebase-js.com/docs/react-firebase-auth/getting-started)
 
-`yarn add firebase && yarn add @react-firebase/auth`
+`yarn add firebase && yarn add @react-firebase/auth && yarn add @react-firebase/database`
 
 Depuis le site de firebase, créer un projet, et aller dans les paramètres
 
